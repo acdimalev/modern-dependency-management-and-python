@@ -1,0 +1,217 @@
+doctype html
+html
+  head
+    title Modern Dependency Management and Python
+    link(rel="stylesheet", href="app.css")
+    script(src="app.js")
+    script require('initialize');
+  body
+    .reveal
+      .slides
+        section
+          h2(align="left") Modern Dependency Management
+          h2(align="left") and Python
+        section
+          h3 Theory
+          p Left's start with some context.
+        section
+          h4 Direct Dependencies
+          p (as found in a manifest file)
+          p Python Example
+          pre
+            code
+              | cryptography
+              | hypothesis
+        section
+          h4 Resolved Dependencies
+          p (as found in a lock file)
+          p Python Example
+          pre
+            code
+              | asn1crypto==0.22.0
+              | cffi==1.10.0
+              | cryptography==1.8.1
+              | hypothesis==3.7.0
+              | idna==2.5
+              | packaging==16.8
+              | pycparser==2.17
+              | six==1.10.0
+        section
+          h3 History
+          p Why the hell am I talking about this?
+        section
+          h4 Bundler
+          ul
+            li language: Ruby
+            li repository: rubygems.org
+            li manifest file: Gemfile
+            li lock file: Gemfile.lock
+        section
+          h4 Cargo
+          ul
+            li language: Rust
+            li repository: crates.io
+            li manifest file: Cargo.toml
+            li lock file: Cargo.lock
+        section
+          h4 Yarn
+          ul
+            li language: Javascript
+            li repository: npmjs.com
+            li manifest file: package.json
+            li lock file: yarn.lock
+        section
+          h3 Application
+          p What about Python?
+        section
+          h4 DIY
+          ul
+            li virtualenv
+            li pip
+            li wheel
+            li setuptools
+            li easy_install
+            li egg
+        section
+          section
+            h4 virtualenv
+            p Cleanroom environments for installing application dependencies.
+          section
+            h4 virtualenv
+            p Path convention?
+            ul
+              li Ruby: vendor
+              li Rust: target
+              li Javascript: node_modules
+              li Python: ... venv ?
+          section
+            h4 virtualenv
+            p Strongly abuses the shell environment.
+            pre
+              code
+                | $ virtualenv -p python3 venv
+                | $ . venv/bin/activate
+                | (venv) $ deactivate
+                | $ 
+        section
+          section
+            h4 pip
+            p Performs dependency resolution and installation from the <tt>pypi.python.org</tt> repository.
+          section
+            h4 pip
+            p Can dump out a lock file,<br/>but may need some manual editing.
+            pre
+              code
+                | (venv) $ pip freeze > requirements.txt
+                | (venv) $ pip install -r requirements.txt
+          section
+            h4 pip
+            p No standard format for a manifest file.
+            p requirements.in ?
+            pre
+              code
+                | (venv) $ pip install -r requirements.in
+            p setup.py ?
+            pre
+              code
+                | (venv) $ pip install .
+        section
+          h4 wheel
+          p The modern format for distribution of binary and platform-independent Python packages.
+          p (the codename for the Python Packaging Index was Cheese Shop)
+        section
+          section
+            h4 setuptools
+            p Library for building Python packages for redistribution.
+          section
+            h4 setuptools
+            p Does have a manifest file (setup.py) for direct dependencies, but does not natively support dependency resolution.
+        section
+          h4 easy_install
+          p The hardest way to install Python packages.
+          p Mostly supplanted by pip, but setuptools still uses easy_install.
+        section
+          h4 egg
+          p The old format for distribution of binary and platform-independent Python packages.
+          p Still used by easy_install, thus still in use today.
+        section
+          h3 Pitch
+          p The honest word for 'evangelism'.
+        section
+          section
+            h4 Can we do better?
+          section
+            h4 ...maybe.
+          section
+            h4 pip-tools
+            ul
+              li language: Python
+              li repository: pypi.python.org
+              li manifest file: setup.py
+              li lock file: requirements.txt
+          section
+            h4 pip-tools
+            pre
+              code
+                | (venv) $ pip install -U pip pip-tools
+                | (venv) $ pip-compile
+                | (venv) $ pip-sync
+          section
+            h4 pip-tools
+            p Uses the setuptools manifest file.
+            pre
+              code
+                | $ cat setup.py 
+                | from setuptools import setup
+                | 
+                | setup(
+                |     install_requires=[
+                |         'cryptography',
+                |         'hypothesis',
+                |     ],
+                | )
+          section
+            h4 pip-tools
+            p Produces a nice lock file.
+            pre
+              code
+                | (venv) $ pip-compile 
+                | #
+                | # This file is autogenerated by pip-compile
+                | # To update, run:
+                | #
+                | #    pip-compile --output-file requirements.txt setup.py
+                | #
+                | asn1crypto==0.22.0        # via cryptography
+                | cffi==1.10.0              # via cryptography
+                | cryptography==1.8.1
+                | hypothesis==3.7.0
+                | idna==2.5                 # via cryptography
+                | packaging==16.8           # via cryptography
+                | pycparser==2.17           # via cffi
+                | six==1.10.0               # via cryptography
+          section
+            h4 pip-tools
+            p Keeps the environment clean.
+            pre
+              code
+                | (venv) $ pip-sync 
+                | Uninstalling pkg-resources-0.0.0:
+                |   Successfully uninstalled pkg-resources-0.0.0
+                | Collecting asn1crypto==0.22.0
+                |   Using cached asn1crypto-0.22.0-py2.py3-none-any.whl
+                | Collecting cffi==1.10.0
+                |   Using cached cffi-1.10.0-cp35-cp35m-manylinux1_x86_64.whl
+                | Collecting cryptography==1.8.1
+                | Collecting hypothesis==3.7.0
+                | Collecting idna==2.5
+                |   Using cached idna-2.5-py2.py3-none-any.whl
+                | Collecting pycparser==2.17
+                | ...
+        section
+          p In summary... dependency management in Python is not a solved problem.
+          p But it's getting better!
+          ul
+            li Python Packaging User Guide: packaging.python.org
+            li pip-tools: github.com/jazzband/pip-tools
+            li other efforts: ???
