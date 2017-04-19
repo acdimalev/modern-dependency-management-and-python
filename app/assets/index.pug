@@ -13,29 +13,47 @@ html
           h2(align="left") and Python
         section
           h3 Theory
-          p Left's start with some context.
+          p Let's start with some context.
         section
-          h4 Direct Dependencies
-          p (as found in a manifest file)
-          p Python Example
-          pre
-            code
-              | cryptography
-              | hypothesis
+          section
+            h4 Direct Dependencies
+            p (as found in a manifest file)
+            p Python Example
+            pre
+              code
+                | cryptography
+                | hypothesis
+          section
+            h4 Direct Dependencies
+            p (as found in a manifest file)
+            div(align="left")
+              div Necessary for dependency resolution.
+              ul
+                li clean upgrades
+                li release gating
         section
-          h4 Resolved Dependencies
-          p (as found in a lock file)
-          p Python Example
-          pre
-            code
-              | asn1crypto==0.22.0
-              | cffi==1.10.0
-              | cryptography==1.8.1
-              | hypothesis==3.7.0
-              | idna==2.5
-              | packaging==16.8
-              | pycparser==2.17
-              | six==1.10.0
+          section
+            h4 Resolved Dependencies
+            p (as found in a lock file)
+            p Python Example
+            pre
+              code
+                | asn1crypto==0.22.0
+                | cffi==1.10.0
+                | cryptography==1.8.1
+                | hypothesis==3.7.0
+                | idna==2.5
+                | packaging==16.8
+                | pycparser==2.17
+                | six==1.10.0
+          section
+            h4 Resolved Dependencies
+            p (as found in a lock file)
+            div(align="left")
+              div Necessary for deterministic builds.
+              ul
+                li uniform development environments
+                li deployment of tested code
         section
           h3 History
           p Why the hell am I talking about this?
