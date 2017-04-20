@@ -1,16 +1,24 @@
-# Brunch app
+# Modern Dependency Management and Python
 
-This is a HTML5 application, built with [Brunch](http://brunch.io).
+This is a [reveal.js](http://lab.hakim.se/reveal-js/) presentation, built with [Brunch](http://brunch.io).
 
-## Getting started
-* Install (if you don't have them):
-    * [Node.js](http://nodejs.org): `brew install node` on OS X
-    * [Brunch](http://brunch.io): `npm install -g brunch`
-    * Brunch plugins and app dependencies: `npm install`
-* Run:
-    * `npm start` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
-    * `npm run build` — builds minified project for production
-* Learn:
-    * `public/` dir is fully auto-generated and served by HTTP server.  Write your code in `app/` dir.
-    * Place static files you want to be copied from `app/assets/` to `public/`.
-    * [Brunch site](http://brunch.io), [Getting started guide](https://github.com/brunch/brunch-guide#readme)
+The content of the presentation is also marked up with [Pug](https://github.com/pugjs/pug) for the author's own sanity.
+
+Like any respectable Javascript project, this presentation has about a quintillion indirect dependencies.  I guarantee that I have carefully inspected about none of them.  All of the content of this presentation is directly encoded in an HTML document and pretty much completely illegible without using a modern web browser with Javascript enabled.
+
+On the other hand, it's not PowerPoint.
+
+
+## WTF
+
+All dependencies for building the presentation can be installed with Yarn.
+
+https://yarnpkg.com/en/docs/getting-started
+
+To install all dependencies to the `node_modules` subdirectory:
+
+    yarn
+
+To build the presentation and output files to the `public` subdirectory:
+
+    yarn build
