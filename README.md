@@ -4,7 +4,7 @@ This is a [reveal.js](http://lab.hakim.se/reveal-js/) presentation, built with [
 
 The content of the presentation is also marked up with [Pug](https://github.com/pugjs/pug) for the author's own sanity.
 
-Like any respectable Javascript project, this presentation has about a quintillion indirect dependencies.  I guarantee that I have carefully inspected about none of them.  All of the content of this presentation is directly encoded in an HTML document and pretty much completely illegible without using a modern web browser with Javascript enabled.
+Like any respectable Javascript project, this presentation has about a quintillion indirect dependencies.  The author guarantees that he has carefully inspected about none of them.  All of the content of this presentation is directly encoded in an HTML document and pretty much completely illegible without using a modern web browser with Javascript enabled.
 
 On the other hand, it's not PowerPoint.
 
